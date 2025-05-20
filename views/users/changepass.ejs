@@ -1,0 +1,46 @@
+<% layout('layout/boilerplate.ejs') %>
+<% if (!currentUser){%>
+    <script>
+        window.location.href='/login'
+    </script>
+<%} else {%>
+<div class="card mt-4 mb-4" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="/img/camping-place-cartoon.jpg" class="img-fluid" alt="...">
+        </div>
+        <div class="col-md-6 mt-3">
+            <div class="container-fluid">
+                <h2 class="mb-3 d-flex justify-content-center">Change Password</h2>
+            <form action="/<%= currentUser._id %>/changepass/" method="POST" class="validated-form" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="oldpassword">Old Password</label>
+                    <input class="form-control" type="password" name="oldpassword" id="oldpassword" placeholder="Old Password"
+                        required>
+                    <div class="valid-feedback">
+                        looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="newpassword">New Password</label>
+                    <input class="form-control" type="password" name="newpassword" id="newpassword" placeholder="New Password"
+                        required>
+                    <div class="valid-feedback">
+                        looks good!
+                    </div>
+                </div>
+                <div class="mb-3 d-flex justify-content-center">
+                    <button class="btn btn-dark">Confirm</button>
+                </div>
+            </form>
+            <div class="Sign-up mt-2">
+                <p>
+                    <a href="/users/:_id">Go Back ... </a>
+                </p>
+            </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<% } %> 

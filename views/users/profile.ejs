@@ -1,0 +1,96 @@
+<% layout('layout/boilerplate.ejs') %>
+    <link rel="stylesheet" href="/css/profile.css" />
+    <div class="header__wrapper">
+      <header></header>
+      <div class="cols__container">
+        <div class="left__col">
+          <div class="img__container">
+            <% if(user.image && user.image !==''){%>
+              <img src="<%= user.image %>"/>
+              <%} else {%>
+                <img src="/img/profileback.png"/>
+            <%}%>
+            <!-- Online mark -->
+            <!-- <span></span> -->
+          </div>
+          <h2><%= user.name %>
+            <% if(user.verify) {%>
+              <img src="/img/verifytick.png" style="width: 15px;" alt="">
+              <i class="fa-solid fa-badge-check"></i> 
+            <%}%>
+            </h2>
+          <p>@<%= user.username %></p>
+
+          <ul class="about">
+            <li><span>4,073</span>Followers</li>
+            <li><span>322</span>Following</li>
+            <li><span><%= campgrounds.length %></span>Posts</li>
+          </ul>
+
+          <div class="content">
+            <p>
+              <% if(user.about) {%>
+                <%= user.about %>
+              <%}else{%>
+                This User has nothing tell about...
+              <%}%>
+            </p>
+
+          </div>
+        </div>
+        <div class="right__col">
+          <nav>
+            <% if(currentUser && user._id.equals(currentUser._id)){ %>
+              <form action="/edit">
+                <button>Edit profile</button>
+              </form>
+            <% }else if (!currentUser){ %>
+              <form action="/login">
+                <button>Follow</button>
+              </form>
+            <% }else{ %>
+              <form action="#">
+                <button>Follow</button>
+              </form>
+            <%}%>
+            <% if(currentUser && currentUser.isAdmin){ %>
+              <form action="/users/<%= user._id %>" method="post">
+                <button>
+                  <% if(user.verify){%>
+                    Unverify
+                  <%}else{%>
+                    Verify
+                  <%}%>
+                </button>
+              </form>
+              <%}%>
+          </nav>
+
+          <!-- <div class="photos"> -->
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <% if(campgrounds.length < 1) { %>
+                    <h6 class="mt-4 ml-2"><em>No campgrounds submitted yet...</em></h6>
+                <% } else { %>
+                    <% campgrounds.forEach( campground=> { %>
+                    <div class="col">
+                        <div class="card">
+                            <% if (campground.image.length) { %>
+                                <img class="img-fluid" src="<%= campground.image[0].index %>" alt="">
+                            <% } else { %>
+                                <img src="/img/Camping Vector Illustration.png" width='350' alt="">
+                            <% } %>
+                            <div class="card-body">
+                                <h5 class="card-title"><%= campground.title %></h5>
+                                <p class="card-text desc"><%= campground.description %></p>
+                                <a href="/campgrounds/<%= campground._id %>" class="btn btn-dark">View <%= campground.title %></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                <% }) %>
+                <% } %>
+            </div>
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>

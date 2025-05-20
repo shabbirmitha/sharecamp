@@ -1,0 +1,33 @@
+<% layout('layout/boilerplate.ejs') %>
+
+<div class="card mt-4 mb-4" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="/img/camping-place-cartoon.jpg" class="img-fluid" alt="...">
+        </div>
+        <div class="col-md-6 mt-3">
+            <div class="container-fluid">
+                <h2 class="mb-3 d-flex justify-content-center">Forgot Password ?</h2>
+            <form action="/forgotpass" method="POST" class="validated-form" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" type="text" name="email" id="email" placeholder="Email"
+                        required>
+                    <div class="valid-feedback">
+                        looks good!
+                    </div>
+                </div>
+                <div class="mb-3 d-flex justify-content-center">
+                    <button class="btn btn-dark">Confirm</button>
+                </div>
+            </form>
+            <div class="Sign-up mt-2">
+                <p>
+                    <a href="/users/:_id">Go Back ... </a>
+                </p>
+            </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
